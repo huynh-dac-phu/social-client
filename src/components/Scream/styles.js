@@ -3,6 +3,10 @@ const style = {
     display: "flex",
     marginBottom: "20px"
   },
+  header: {
+    display: "flex",
+    justifyContent: "space-between"
+  },
   link: {
     textDecoration: "none"
   },
@@ -11,7 +15,12 @@ const style = {
   },
   content: {
     padding: "25px",
+    flex: 1,
     objectFit: "cover"
+  },
+  action: {
+    display: "flex",
+    alignItems: "center"
   }
 };
 export default style;

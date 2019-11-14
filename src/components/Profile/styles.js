@@ -16,6 +16,17 @@ const styles = {
     },
     "& .profile-image": {
       width: 200,
+      display: "flex",
+      flexDirection: "column",
+      margin: "0 auto",
+      objectFit: "cover",
+      borderRadius: "50%",
+      "& .button": {
+        alignSelf: "center"
+      }
+    },
+    "& .profile-avatar": {
+      width: 200,
       height: 200,
       margin: "0 auto",
       objectFit: "cover",
@@ -28,6 +39,9 @@ const styles = {
       },
       "& a": {
         color: theme.palette.primary.main
+      },
+      "& .logout": {
+        display: "block"
       }
     },
     "& hr ": {
@@ -48,6 +62,10 @@ const styles = {
   },
   noProfile: {
     paddingTop: 10
+  },
+  flex: {
+    display: "flex",
+    justifyContent: "space-between"
   }
 };
 export default styles;

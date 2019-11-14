@@ -26,7 +26,6 @@ const useStyles = makeStyles(theme => ({ ...theme.spreadThis }));
 
 const Signup = props => {
   const [statesManager, setStatesManager] = useState(complexStateInitial);
-  // const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
   const history = useHistory();
   const classes = useStyles();
@@ -43,7 +42,6 @@ const Signup = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // setLoading(true);
     signupUser(
       {
         email: statesManager.email,

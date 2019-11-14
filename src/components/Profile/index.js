@@ -7,16 +7,14 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 //Component
 import Profile from "./Profile";
-import NoProfile from "./NoProfile";
+import NoProfile from "../NoProfile";
 
 //Custom
 import styles from "./styles";
 const ProfileContainer = props => {
   const {
-    classes,
     user: { authenticated, credentials, loading }
   } = props;
-  console.log(props);
 
   let profileMarkup = !loading ? (
     authenticated ? (
@@ -32,7 +30,7 @@ const ProfileContainer = props => {
 };
 
 ProfileContainer.propsTypes = {
-  classes: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired
 };
 
 const mapStateToProp = state => ({
