@@ -14,8 +14,7 @@ import Button from "@material-ui/core/Button";
 //Icon
 import EditIcon from "@material-ui/icons/AccountCircle";
 //custom
-import { withStyles, makeStyles } from "@material-ui/styles";
-// import styles from "../Profile/styles";
+import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({ ...theme.spreadThis }));
 const EditProfile = props => {

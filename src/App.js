@@ -13,6 +13,7 @@ import AuthRoute from "./util/AuthRoute";
 //Page
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import User from "./pages/User";
 import Navbar from "./components/Navbar";
 //Redux
 import { Provider } from "react-redux";
@@ -46,6 +47,7 @@ const App = () => {
               <Route exact path="/" component={Home}></Route>
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />
+              <Route exact path="/users/:handle" component={User} />
             </Switch>
           </div>
         </Router>

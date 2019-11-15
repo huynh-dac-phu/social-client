@@ -11,7 +11,8 @@ const style = {
     textDecoration: "none"
   },
   image: {
-    maxWidth: "200px"
+    maxWidth: "200px",
+    height: "200px"
   },
   content: {
     padding: "25px",

@@ -3,22 +3,20 @@ import { connect } from "react-redux";
 //Components
 import { Link } from "react-router-dom";
 import MyButton from "../../util/MyButton";
+import PostScream from "../PostScream";
 
 //Pages
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 //Icon
-import AddIcon from "@material-ui/icons/Add";
 import HomeIcon from "@material-ui/icons/Home";
 import NotiIcon from "@material-ui/icons/Notifications";
 
 const actionBar = () => {
   return (
     <>
-      <MyButton title="Post screams" placement="bottom">
-        <AddIcon />
-      </MyButton>
+      <PostScream />
       <Link to="/">
         <MyButton title="Home" placement="bottom">
           <HomeIcon />
