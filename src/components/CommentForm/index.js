@@ -32,6 +32,7 @@ const CommentForm = props => {
       setBody("");
     }
   }, [errors]);
+  console.log("Run");
 
   const handleSubmit = e => {
     e.preventDefault();

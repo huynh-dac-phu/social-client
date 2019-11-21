@@ -37,7 +37,8 @@ const Scream = props => {
     user: {
       authenticated,
       credentials: { handle }
-    }
+    },
+    openDialog
   } = props;
 
   const deleteButton =
@@ -78,7 +79,11 @@ const Scream = props => {
               <ChatIcon color="primary" />
             </MyButton>
             <span>{commentCount} Comments</span>
-            <ScreamDialog iD={screamId} handle={handle} />
+            <ScreamDialog
+              iD={screamId}
+              handle={handle}
+              openDialog={openDialog}
+            />
           </div>
         </CardContent>
       </Card>

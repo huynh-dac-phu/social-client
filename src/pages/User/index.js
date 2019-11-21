@@ -1,28 +1,69 @@
 import React, { useState, useEffect } from "react";
-import { withStyles, makeStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 import { getUserData } from "../../redux/actions/dataAction";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+//Components
+import ProfileStatic from "../../components/ProfileStatic";
+import Scream from "../../components/Scream";
+import ScreamSkelection from "../../components/ScreamSkelection";
 
+//MUI
+import Grid from "@material-ui/core/Grid";
 //custom
 import styles from "./styles";
 
-const useStyles = makeStyles(theme => ({
-  ...theme.spreadThis,
-  ...styles
-}));
-
 const User = props => {
-  const classes = useStyles();
-  let { handle } = useParams();
+  let { handle, screamId } = useParams();
   const [profile, setProfile] = useState(null);
-  const { getUserData } = props;
-  console.log(handle);
+  const [screamIdParam, setscreamIdParam] = useState(null);
+  const {
+    getUserData,
+    data: { screams, loading }
+  } = props;
+
   useEffect(() => {
+    if (screamId) setscreamIdParam(screamId);
     getUserData(handle);
-  }, [getUserData, handle]);
-  useEffect(() => {}, []);
-  return <div></div>;
+    axios
+      .get(`/user/${handle}`)
+      .then(res => {
+        setProfile(res.data);
+      })
+      .catch(err => console.log(err));
+  }, [getUserData, handle, screamId]);
+
+  useEffect(() => {
+    console.log(profile);
+  }, [profile]);
+
+  const screamsMarkup = loading ? (
+    <ScreamSkelection />
+  ) : screams == null ? (
+    <p>No screams from this user</p>
+  ) : !screamIdParam ? (
+    screams.map(scream => <Scream key={scream.screamId} scream={scream} />)
+  ) : (
+    screams.map(scream => {
+      if (scream.screamId !== screamIdParam) {
+        return <Scream key={scream.screamId} scream={scream} />;
+      } else {
+        return <Scream key={scream.screamId} scream={scream} openDialog />;
+      }
+    })
+  );
+
+  return (
+    <Grid container spacing={10}>
+      <Grid item sm={8} xs={12}>
+        {screamsMarkup}
+      </Grid>
+      <Grid item sm={4} xs={12}>
+        {profile && <ProfileStatic profile={profile.user} />}
+      </Grid>
+    </Grid>
+  );
 };
 
 const mapStateToProps = state => ({

@@ -4,14 +4,15 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import MyButton from "../../util/MyButton";
 import PostScream from "../PostScream";
+import Notifications from "../Notifications";
 
-//Pages
+//MUI
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+
 //Icon
 import HomeIcon from "@material-ui/icons/Home";
-import NotiIcon from "@material-ui/icons/Notifications";
 
 const actionBar = () => {
   return (
@@ -22,9 +23,7 @@ const actionBar = () => {
           <HomeIcon />
         </MyButton>
       </Link>
-      <MyButton title="Notifications" placement="bottom">
-        <NotiIcon />
-      </MyButton>
+      <Notifications />
     </>
   );
 };

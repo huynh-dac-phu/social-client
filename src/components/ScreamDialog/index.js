@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from "@material-ui/styles";
@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 const ScreamDialog = props => {
   const [open, setOpen] = useState(false);
   const classes = useStyles(style);
+
   const {
     iD,
     scream: {
@@ -45,17 +46,28 @@ const ScreamDialog = props => {
       comments
     },
     UI: { loading },
-    getScream
+    getScream,
+    openDialog
   } = props;
 
-  const handleOpen = () => {
+  const handleOpen = useCallback(() => {
+    const newPath = `/users/${userHandle}/scream/${screamId}`;
+    window.history.pushState(null, null, newPath);
     getScream(iD);
     setOpen(true);
-  };
+  }, [getScream, iD, screamId, userHandle]);
 
   const handleClose = () => {
+    const newPath = `/users/${userHandle}`;
+    window.history.pushState(null, null, newPath);
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (openDialog) handleOpen();
+  }, [handleOpen, openDialog]);
+
+  useEffect(() => {}, []);
 
   const dialogMarkup = loading ? (
     <LinearProgress />

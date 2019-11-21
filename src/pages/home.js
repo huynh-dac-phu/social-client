@@ -4,6 +4,9 @@ import Scream from "../components/Scream";
 import ProfileContainer from "../components/Profile";
 import { connect } from "react-redux";
 import { getScreams } from "../redux/actions/dataAction";
+
+import ScreamSkelection from "../components/ScreamSkelection";
+
 const Home = props => {
   const {
     data: { screams, loading },
@@ -18,7 +21,7 @@ const Home = props => {
   const recentScreamsMarkup = !loading ? (
     screams.map(scream => <Scream key={scream.screamId} scream={scream} />)
   ) : (
-    <p>Loading..</p>
+    <ScreamSkelection />
   );
 
   return (

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 //Component
 import Profile from "./Profile";
 import NoProfile from "../NoProfile";
+import ProfileSkelection from "../ProfileSkelection";
 
 //Custom
 import styles from "./styles";
@@ -19,7 +20,7 @@ const ProfileContainer = props => {
       <NoProfile />
     )
   ) : (
-    <p>Loading...</p>
+    <ProfileSkelection />
   );
 
   return profileMarkup;
