@@ -8,7 +8,7 @@ import axios from "axios";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import themeFile from "./util/theme";
 //Component
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import AuthRoute from "./util/AuthRoute";
 //Page
 import Login from "./pages/Login";

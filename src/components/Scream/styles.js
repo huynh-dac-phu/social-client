@@ -1,4 +1,6 @@
-const style = {
+import theme from "../../util/theme";
+
+const style = theme => ({
   card: {
     display: "flex",
     marginBottom: "20px"
@@ -17,11 +19,20 @@ const style = {
   content: {
     padding: "25px",
     flex: 1,
-    objectFit: "cover"
+    objectFit: "cover",
+    [theme.breakpoints.only("xs")]: {
+      padding: "10px"
+    }
   },
   action: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    flexWrap: "wrap"
+  },
+  span: {
+    [theme.breakpoints.only("xs")]: {
+      fontSize: "13px"
+    }
   }
-};
+});
 export default style;

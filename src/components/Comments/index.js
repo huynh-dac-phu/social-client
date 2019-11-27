@@ -27,7 +27,7 @@ const Comments = props => {
               <Grid item sm={2}>
                 <img className={classes.avatar} src={userImage} alt="" />
               </Grid>
-              <Grid item sm={10}>
+              <Grid item sm={10} className={classes.content}>
                 <div className={classes.commentData}>
                   <Typography
                     variant="h5"

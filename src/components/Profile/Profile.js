@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -24,8 +23,14 @@ import styles from "./styles";
 import dayjs from "dayjs";
 
 const Profile = props => {
-  const { classes, credentials, uploadImage, logoutUser } = props;
+  const {
+    classes,
+    user: { credentials },
+    uploadImage,
+    logoutUser
+  } = props;
   const { imageUrl, handle, bio, location, website, createdAt } = credentials;
+
   const fileInput = useRef();
 
   const onChangeImage = e => {
@@ -113,13 +118,13 @@ const Profile = props => {
   );
 };
 
-Profile.propTypes = {
-  classes: PropTypes.object.isRequired,
-  credentials: PropTypes.object.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  uploadImage: PropTypes.func.isRequired
-};
+const mapStateToProp = state => ({
+  user: state.user
+});
 
 const mapDispatchToProps = { logoutUser, uploadImage };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Profile));
+export default connect(
+  mapStateToProp,
+  mapDispatchToProps
+)(withStyles(styles)(Profile));

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/styles";
-import PropTypes from "prop-types";
 //route
 import { Link, useHistory } from "react-router-dom";
 //material
@@ -138,14 +137,6 @@ const Signup = props => {
       <Grid item sm></Grid>
     </Grid>
   );
-};
-
-Signup.propTypes = {
-  classes: PropTypes.object.isRequired,
-  // signupUser: PropTypes.func.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

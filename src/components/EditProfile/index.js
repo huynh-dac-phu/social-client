@@ -113,8 +113,6 @@ const EditProfile = props => {
   );
 };
 
-EditProfile.propTypes = {};
-
 const mapDispatchToProps = { updateUserDetail };
 
 export default connect(null, mapDispatchToProps)(EditProfile);

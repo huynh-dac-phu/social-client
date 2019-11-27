@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import Scream from "../components/Scream";
-import ProfileContainer from "../components/Profile";
+import Scream from "../../components/Scream";
+import ProfileContainer from "../../components/Profile";
 import { connect } from "react-redux";
-import { getScreams } from "../redux/actions/dataAction";
+import { getScreams } from "../../redux/actions/dataAction";
 
-import ScreamSkelection from "../components/ScreamSkelection";
+import ScreamSkelection from "../../components/ScreamSkelection";
 
 const Home = props => {
   const {
@@ -25,7 +25,7 @@ const Home = props => {
   );
 
   return (
-    <Grid container spacing={10}>
+    <Grid container spacing={0} style={{ padding: "0 10px" }}>
       <Grid item sm={8} xs={12}>
         {recentScreamsMarkup}
       </Grid>

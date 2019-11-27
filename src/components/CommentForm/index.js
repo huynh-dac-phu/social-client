@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
   ...theme.spreadThis,
   ...style
 }));
+
 const CommentForm = props => {
   const [body, setBody] = useState("");
   const [error, setError] = useState({});
@@ -31,43 +32,46 @@ const CommentForm = props => {
       setError({});
       setBody("");
     }
-  }, [errors]);
-  console.log("Run");
+  }, [errors, props]);
 
   const handleSubmit = e => {
     e.preventDefault();
     postComment(screamId, { body });
   };
+
   const handleChange = e => {
     setBody(e.target.value);
   };
 
-  const commentFormMarkup = authenticated ? (
-    <Grid item sm={12}>
-      <form className={classes.form} onSubmit={handleSubmit}>
-        <TextField
-          className={classes.textInput}
-          id="comment"
-          name="body"
-          label="Comment on scream"
-          helperText={error.comment}
-          error={error.comment ? true : false}
-          fullWidth
-          value={body}
-          onChange={handleChange}
-        ></TextField>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          className={classes.button}
-        >
-          Submit
-        </Button>
-      </form>
-    </Grid>
-  ) : null;
-  return commentFormMarkup;
+  return (
+    <>
+      {authenticated && (
+        <Grid container>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <TextField
+              className={classes.textInput}
+              id="comment"
+              name="body"
+              label="Comment on scream"
+              helperText={error.comment}
+              error={error.comment ? true : false}
+              fullWidth
+              value={body}
+              onChange={handleChange}
+            ></TextField>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Submit
+            </Button>
+          </form>
+        </Grid>
+      )}
+    </>
+  );
 };
 
 const mapStateToProps = state => ({

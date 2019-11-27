@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import dayjs from "dayjs";
-import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 import { getScream } from "../../redux/actions/dataAction";
@@ -8,18 +6,13 @@ import { getScream } from "../../redux/actions/dataAction";
 //MUI
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Grid from "@material-ui/core/Grid";
 //Icon
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
 import CloseIcon from "@material-ui/icons/Close";
-import ChatIcon from "@material-ui/icons/Chat";
 //Component
 import MyButton from "../../util/MyButton";
-import LikeButton from "../LikeButton";
-import Comments from "../Comments";
-import CommentForm from "../CommentForm";
+import ScreamDialogProfile from "./ScreamDialogProfile";
 
 //custom
 import style from "./styles";
@@ -50,6 +43,16 @@ const ScreamDialog = props => {
     openDialog
   } = props;
 
+  const profile = {
+    screamId,
+    body,
+    createdAt,
+    likeCount,
+    commentCount,
+    userImage,
+    userHandle,
+    comments
+  };
   const handleOpen = useCallback(() => {
     const newPath = `/users/${userHandle}/scream/${screamId}`;
     window.history.pushState(null, null, newPath);
@@ -68,38 +71,6 @@ const ScreamDialog = props => {
   }, [handleOpen, openDialog]);
 
   useEffect(() => {}, []);
-
-  const dialogMarkup = loading ? (
-    <LinearProgress />
-  ) : (
-    <Grid container>
-      <Grid item sm={5} className={classes.profileImage}>
-        <img src={userImage} alt="" className={classes.image} />
-      </Grid>
-      <Grid item sm={7}>
-        <Typography
-          component={Link}
-          color="primary"
-          variant="h5"
-          to={`/users/${userHandle}`}
-        >
-          @{userHandle}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
-        </Typography>
-        <Typography variant="body1">{body}</Typography>
-        <LikeButton screamId={screamId} />
-        <span>{likeCount} Likes</span>
-        <MyButton title="Comment" placement="bottom">
-          <ChatIcon color="primary" />
-        </MyButton>
-        <span>{commentCount} Comments</span>
-      </Grid>
-      <CommentForm screamId={screamId} />
-      <Comments comments={comments} />
-    </Grid>
-  );
 
   return (
     <>
@@ -120,7 +91,8 @@ const ScreamDialog = props => {
           <CloseIcon color="primary" />
         </MyButton>
         <DialogContent className={classes.content}>
-          {dialogMarkup}
+          {loading && <LinearProgress />}
+          {!loading && <ScreamDialogProfile profile={profile} />}
         </DialogContent>
       </Dialog>
     </>
@@ -129,8 +101,7 @@ const ScreamDialog = props => {
 
 const mapStateToProps = state => ({
   scream: state.data.scream,
-  UI: state.UI,
-  user: state.user
+  UI: state.UI
 });
 
 const mapDispatchToProps = { getScream };

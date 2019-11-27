@@ -38,7 +38,9 @@ const Notifications = props => {
     let unreadNotificationIds = notifications
       .filter(not => !not.read)
       .map(not => not.notificationId);
-    markNotificationsRead(unreadNotificationIds);
+    if (unreadNotificationIds === []) {
+      markNotificationsRead(unreadNotificationIds);
+    }
   };
 
   if (notifications && notifications.length > 0) {

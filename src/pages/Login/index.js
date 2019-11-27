@@ -1,6 +1,5 @@
 import React, { useState, useEffect /*useReducer*/ } from "react";
 import { withStyles, makeStyles } from "@material-ui/styles";
-import PropTypes from "prop-types";
 // import axios from "axios";
 //route
 import { Link, useHistory } from "react-router-dom";
@@ -106,13 +105,6 @@ const Login = props => {
       <Grid item sm></Grid>
     </Grid>
   );
-};
-
-Login.propTypes = {
-  classes: PropTypes.object.isRequired,
-  loginUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired
 };
 
 const mapStatteToProps = state => ({

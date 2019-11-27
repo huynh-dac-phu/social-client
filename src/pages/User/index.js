@@ -55,7 +55,7 @@ const User = props => {
   );
 
   return (
-    <Grid container spacing={10}>
+    <Grid container spacing={0} style={{ padding: "0 10px" }}>
       <Grid item sm={8} xs={12}>
         {screamsMarkup}
       </Grid>

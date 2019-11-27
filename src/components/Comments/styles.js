@@ -1,5 +1,6 @@
 const style = {
   container: {
+    width: "100%",
     padding: "10px 0",
     marginBottom: "10px",
     "&:last-child": {
@@ -15,6 +16,10 @@ const style = {
     margin: "0 10px",
     maxWidth: "100%",
     borderRadius: "50%"
+  },
+  content: {
+    flex: 1,
+    paddingRight: 10
   },
   commentData: {
     display: "flex",

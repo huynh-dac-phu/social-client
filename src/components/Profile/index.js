@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 //Component
@@ -11,11 +10,12 @@ import ProfileSkelection from "../ProfileSkelection";
 import styles from "./styles";
 const ProfileContainer = props => {
   const {
-    user: { authenticated, credentials, loading }
+    user: { authenticated, loading }
   } = props;
+
   let profileMarkup = !loading ? (
     authenticated ? (
-      <Profile credentials={credentials} />
+      <Profile />
     ) : (
       <NoProfile />
     )
@@ -24,10 +24,6 @@ const ProfileContainer = props => {
   );
 
   return profileMarkup;
-};
-
-ProfileContainer.propsTypes = {
-  user: PropTypes.object.isRequired
 };
 
 const mapStateToProp = state => ({

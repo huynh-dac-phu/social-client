@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 //format time
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 //Component
 import MyButton from "../../util/MyButton";
-import DeleteScream from "../DeleteScream/index";
+import DeleteScream from "../DeleteScream";
 import ScreamDialog from "../ScreamDialog";
 import LikeButton from "../LikeButton";
 
@@ -34,18 +32,10 @@ const Scream = props => {
       likeCount,
       commentCount
     },
-    user: {
-      authenticated,
-      credentials: { handle }
-    },
     openDialog
   } = props;
 
-  const deleteButton =
-    authenticated && userHandle === handle ? (
-      <DeleteScream iD={screamId} />
-    ) : null;
-
+  useEffect(() => {}, [props]);
   return (
     <div>
       <Card className={classes.card}>
@@ -66,24 +56,24 @@ const Scream = props => {
             >
               {userHandle}
             </Typography>
-            {deleteButton}
+            <DeleteScream userHandle={userHandle} />
           </div>
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
           <Typography variant="body1">{body}</Typography>
           <div className={classes.action}>
-            <LikeButton screamId={screamId} />
-            <span>{likeCount} Likes</span>
-            <MyButton title="Comment" placement="bottom">
-              <ChatIcon color="primary" />
-            </MyButton>
-            <span>{commentCount} Comments</span>
-            <ScreamDialog
-              iD={screamId}
-              handle={handle}
-              openDialog={openDialog}
-            />
+            <div>
+              <LikeButton screamId={screamId} />
+              <span>{likeCount} Likes</span>
+            </div>
+            <div>
+              <MyButton title="Comment" placement="bottom">
+                <ChatIcon color="primary" />
+              </MyButton>
+              <span>{commentCount} Comments</span>
+            </div>
+            <ScreamDialog iD={screamId} openDialog={openDialog} />
           </div>
         </CardContent>
       </Card>
@@ -91,21 +81,4 @@ const Scream = props => {
   );
 };
 
-Scream.propTypes = {
-  classes: PropTypes.object.isRequired,
-  scream: PropTypes.shape({
-    userImage: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    userHandle: PropTypes.string.isRequired,
-    screamId: PropTypes.string.isRequired,
-    likeCount: PropTypes.number.isRequired,
-    commentCount: PropTypes.number.isRequired
-  }).isRequired
-};
-
-const mapStateToProp = state => ({
-  user: state.user
-});
-
-export default connect(mapStateToProp)(withStyles(style)(Scream));
+export default withStyles(style)(Scream);
