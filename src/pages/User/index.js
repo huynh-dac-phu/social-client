@@ -20,7 +20,8 @@ const User = props => {
   const [screamIdParam, setscreamIdParam] = useState(null);
   const {
     getUserData,
-    data: { screams, loading }
+    data: { screams, loading },
+    classes
   } = props;
 
   useEffect(() => {
@@ -34,9 +35,7 @@ const User = props => {
       .catch(err => console.log(err));
   }, [getUserData, handle, screamId]);
 
-  useEffect(() => {
-    console.log(profile);
-  }, [profile]);
+  useEffect(() => {}, [profile]);
 
   const screamsMarkup = loading ? (
     <ScreamSkelection />
@@ -55,11 +54,11 @@ const User = props => {
   );
 
   return (
-    <Grid container spacing={0} style={{ padding: "0 10px" }}>
-      <Grid item sm={8} xs={12}>
+    <Grid className={classes.container} container spacing={0}>
+      <Grid className={classes.scream} item md={8} xs={12}>
         {screamsMarkup}
       </Grid>
-      <Grid item sm={4} xs={12}>
+      <Grid className={classes.profile} item md={4} xs={12}>
         {profile && <ProfileStatic profile={profile.user} />}
       </Grid>
     </Grid>

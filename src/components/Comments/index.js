@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, makeStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
@@ -9,14 +9,8 @@ import Grid from "@material-ui/core/Grid";
 //custome style
 import style from "./styles";
 
-const useStyles = makeStyles(theme => ({
-  ...theme.spreadThis,
-  ...style
-}));
-
 const Comments = props => {
-  const { comments } = props;
-  const classes = useStyles(style);
+  const { comments, classes } = props;
   return (
     <Grid container>
       {comments.map((comment, i) => {

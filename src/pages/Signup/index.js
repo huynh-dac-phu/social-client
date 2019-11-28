@@ -21,7 +21,7 @@ const complexStateInitial = {
   handle: ""
 };
 
-const useStyles = makeStyles(theme => ({ ...theme.spreadThis }));
+const useStyles = makeStyles(theme => ({ ...theme.spreadThis, ...styles }));
 
 const Signup = props => {
   const [statesManager, setStatesManager] = useState(complexStateInitial);
@@ -59,7 +59,7 @@ const Signup = props => {
   return (
     <Grid className={classes.form} container>
       <Grid item sm></Grid>
-      <Grid item sm>
+      <Grid item md className={classes.content}>
         <img className={classes.icon} src={icon} alt="app icon" />
         <Typography className={classes.pageTitle} variant="h3">
           Signup

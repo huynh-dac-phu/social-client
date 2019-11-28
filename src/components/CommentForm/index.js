@@ -36,6 +36,7 @@ const CommentForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setBody("");
     postComment(screamId, { body });
   };
 

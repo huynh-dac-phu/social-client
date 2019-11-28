@@ -1,7 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import { withStyles, makeStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 
 //MUI
 import Typography from "@material-ui/core/Typography";
@@ -16,13 +16,7 @@ import CommentForm from "../CommentForm";
 //custom
 import style from "./styles";
 
-const useStyles = makeStyles(theme => ({
-  ...theme.spreadThis,
-  ...style
-}));
-
 const ScreamDialogProfile = props => {
-  const classes = useStyles(style);
   const {
     profile: {
       screamId,
@@ -33,17 +27,16 @@ const ScreamDialogProfile = props => {
       userImage,
       userHandle,
       comments
-    }
+    },
+    classes
   } = props;
-
-  console.count("render");
 
   return (
     <Grid container>
-      <Grid item sm={5} className={classes.profileImage}>
+      <Grid item xs={5} sm={5} className={classes.profileImage}>
         <img src={userImage} alt="" className={classes.image} />
       </Grid>
-      <Grid item sm={7} style={{ paddingLeft: 10 }}>
+      <Grid item xs={7} sm={7} style={{ paddingLeft: 10 }}>
         <Typography
           component={Link}
           color="primary"
@@ -52,13 +45,17 @@ const ScreamDialogProfile = props => {
         >
           @{userHandle}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
+        <Typography
+          className={classes.day}
+          variant="body2"
+          color="textSecondary"
+        >
           {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
         </Typography>
         <Typography variant="body1">{body}</Typography>
         <LikeButton screamId={screamId} />
         <span>{likeCount} Likes</span>
-        <MyButton title="Comment" placement="bottom">
+        <MyButton className={classes.button} title="Comment" placement="bottom">
           <ChatIcon color="primary" />
         </MyButton>
         <span>{commentCount} Comments</span>

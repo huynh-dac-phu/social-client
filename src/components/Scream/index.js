@@ -56,7 +56,7 @@ const Scream = props => {
             >
               {userHandle}
             </Typography>
-            <DeleteScream userHandle={userHandle} />
+            <DeleteScream userHandle={userHandle} iD={screamId} />
           </div>
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
@@ -64,11 +64,15 @@ const Scream = props => {
           <Typography variant="body1">{body}</Typography>
           <div className={classes.action}>
             <div>
-              <LikeButton screamId={screamId} />
+              <LikeButton className={classes.button} screamId={screamId} />
               <span>{likeCount} Likes</span>
             </div>
             <div>
-              <MyButton title="Comment" placement="bottom">
+              <MyButton
+                className={classes.button}
+                title="Comment"
+                placement="bottom"
+              >
                 <ChatIcon color="primary" />
               </MyButton>
               <span>{commentCount} Comments</span>

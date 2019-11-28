@@ -1,4 +1,4 @@
-const style = {
+const style = theme => ({
   container: {
     width: "100%",
     padding: "10px 0",
@@ -10,12 +10,15 @@ const style = {
     }
   },
   avatar: {
+    height: 90,
+    width: 90,
+    // margin: "0 10px",
     objectFit: "cover",
-    height: 100,
-    width: 100,
-    margin: "0 10px",
-    maxWidth: "100%",
-    borderRadius: "50%"
+    borderRadius: "50%",
+    [theme.breakpoints.down("sm")]: {
+      width: 75,
+      height: 75
+    }
   },
   content: {
     flex: 1,
@@ -30,5 +33,5 @@ const style = {
     marginLeft: "20px",
     borderBottom: "1px solid rgba(0,0,0,.2)"
   }
-};
+});
 export default style;

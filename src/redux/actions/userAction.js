@@ -32,7 +32,6 @@ export const signupUser = (newUser, history) => dispatch => {
   axios
     .post("/signup", newUser)
     .then(res => {
-      console.log(res.data);
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
@@ -57,7 +56,6 @@ export const getUserData = () => dispatch => {
   axios
     .get("/user")
     .then(res => {
-      console.log(res.data);
       dispatch({
         type: SET_USER,
         payload: res.data

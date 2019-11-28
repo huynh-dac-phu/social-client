@@ -86,11 +86,11 @@ const Profile = props => {
           <hr />
           {location && (
             <>
-              <Location color="primary">
-                <span>{location}</span>
-              </Location>
+              <Location color="primary" />
+              <span>{location}</span>
             </>
           )}
+          <hr className={classes.break} />
           {website && (
             <>
               <LinkIcon color="primary" />
@@ -103,7 +103,7 @@ const Profile = props => {
           )}
           <Calendar color="primary" />{" "}
           <span>Joined {dayjs(createdAt).format("MMMM YYYY ")}</span>
-          <hr />
+          <hr className={classes.break} />
           <div className={classes.flex}>
             <Tooltip title="Sign out" placement="right">
               <Button className="logout" color="primary" onClick={handleLogout}>

@@ -4,13 +4,17 @@ import Scream from "../../components/Scream";
 import ProfileContainer from "../../components/Profile";
 import { connect } from "react-redux";
 import { getScreams } from "../../redux/actions/dataAction";
-
+//loading animation
 import ScreamSkelection from "../../components/ScreamSkelection";
+//custome
+import styles from "./styles";
+import { withStyles } from "@material-ui/styles";
 
 const Home = props => {
   const {
     data: { screams, loading },
-    getScreams
+    getScreams,
+    classes
   } = props;
 
   useEffect(() => {
@@ -25,11 +29,11 @@ const Home = props => {
   );
 
   return (
-    <Grid container spacing={0} style={{ padding: "0 10px" }}>
-      <Grid item sm={8} xs={12}>
+    <Grid container spacing={0} className={classes.container}>
+      <Grid item md={8} xs={12} className={classes.scream}>
         {recentScreamsMarkup}
       </Grid>
-      <Grid item sm={4} xs={12}>
+      <Grid item md={4} xs={12} className={classes.profile}>
         <ProfileContainer />
       </Grid>
     </Grid>
@@ -40,4 +44,7 @@ const mapStateToProps = state => ({ data: state.data });
 
 const mapDispatchToProps = { getScreams };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Home));

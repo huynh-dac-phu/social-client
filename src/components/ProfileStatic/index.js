@@ -18,6 +18,7 @@ const ProfileStatic = props => {
     classes,
     profile: { imageUrl, handle, bio, location, website, createdAt }
   } = props;
+
   return (
     <Paper className={classes.paper}>
       <div className={classes.profile}>
@@ -33,10 +34,12 @@ const ProfileStatic = props => {
           {bio && <Typography variant="body2">{bio}</Typography>}
           <hr />
           {location && (
-            <Location color="primary">
+            <>
+              <Location color="primary" />
               <span>{location}</span>
-            </Location>
+            </>
           )}
+          <hr className={classes.break} />
           {website && (
             <>
               <LinkIcon color="primary" />
@@ -49,7 +52,7 @@ const ProfileStatic = props => {
           )}
           <Calendar color="primary" />{" "}
           <span>Joined {dayjs(createdAt).format("MMMM YYYY ")}</span>
-          <hr />
+          <hr className={classes.break} />
         </div>
       </div>
     </Paper>

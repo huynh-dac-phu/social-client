@@ -28,7 +28,6 @@ export default function(state = initialState, action) {
       return initialState;
     }
     case SET_USER: {
-      console.log(action.payload);
       return {
         authenticated: true,
         loading: false,

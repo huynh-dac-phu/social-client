@@ -1,6 +1,5 @@
 const styles = theme => ({
   container: {
-    padding: "0 10px",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column-reverse"
     }

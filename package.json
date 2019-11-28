@@ -22,7 +22,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://asia-east2-socialape-d1e59.cloudfunctions.net/api/",
   "eslintConfig": {
     "extends": "react-app"
   },

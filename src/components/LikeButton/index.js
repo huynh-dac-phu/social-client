@@ -12,7 +12,8 @@ const LikeButton = props => {
     screamId,
     user: { authenticated, likes },
     likeScream,
-    unlikeScream
+    unlikeScream,
+    className
   } = props;
 
   const likedScream = () => {
@@ -29,13 +30,23 @@ const LikeButton = props => {
   };
 
   const undoLike = (
-    <MyButton title="Undo like" placement="bottom" onClick={unlikeAction}>
+    <MyButton
+      className={className}
+      title="Undo like"
+      placement="bottom"
+      onClick={unlikeAction}
+    >
       <LikeIcon color="primary" />
     </MyButton>
   );
 
   const Like = (
-    <MyButton title="Like" placement="bottom" onClick={likeAction}>
+    <MyButton
+      className={className}
+      title="Like"
+      placement="bottom"
+      onClick={likeAction}
+    >
       <LikeIconBorder color="primary" />
     </MyButton>
   );

@@ -1,13 +1,21 @@
-import theme from "../../util/theme";
+import themes from "../../util/theme";
 
-const styles = {
+const styles = theme => ({
   paper: {
-    padding: 20
+    padding: 20,
+    [theme.breakpoints.down("sm")]: {
+      padding: 10
+    }
   },
   profile: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      justifyContent: "space-between"
+    },
     "& .image-wrapper": {
       textAlign: "center",
       position: "relative",
+
       "& button": {
         position: "absolute",
         top: "80%",
@@ -21,6 +29,9 @@ const styles = {
       margin: "0 auto",
       objectFit: "cover",
       borderRadius: "50%",
+      [theme.breakpoints.down("sm")]: {
+        margin: 0
+      },
       "& .button": {
         alignSelf: "center"
       }
@@ -30,7 +41,11 @@ const styles = {
       height: 200,
       margin: "0 auto",
       objectFit: "cover",
-      borderRadius: "50%"
+      borderRadius: "50%",
+      [theme.breakpoints.down("sm")]: {
+        width: "10rem",
+        height: "10rem"
+      }
     },
     "& .profile-details": {
       textAlign: "center",
@@ -38,7 +53,7 @@ const styles = {
         verticalAlign: "middle"
       },
       "& a": {
-        color: theme.palette.primary.main
+        color: themes.palette.primary.main
       },
       "& .logout": {
         display: "block"
@@ -66,6 +81,11 @@ const styles = {
   flex: {
     display: "flex",
     justifyContent: "space-between"
+  },
+  break: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
+    }
   }
-};
+});
 export default styles;

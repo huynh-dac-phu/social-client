@@ -1,5 +1,3 @@
-import theme from "../../util/theme";
-
 const style = theme => ({
   card: {
     display: "flex",
@@ -10,11 +8,22 @@ const style = theme => ({
     justifyContent: "space-between"
   },
   link: {
-    textDecoration: "none"
+    textDecoration: "none",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem"
+    }
+  },
+  button: {
+    [theme.breakpoints.down("xs")]: {
+      padding: 0
+    }
   },
   image: {
     maxWidth: "200px",
-    height: "200px"
+    height: "200px",
+    [theme.breakpoints.down("sm")]: {
+      width: "10rem"
+    }
   },
   content: {
     padding: "25px",
@@ -27,7 +36,10 @@ const style = theme => ({
   action: {
     display: "flex",
     alignItems: "center",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "13px"
+    }
   },
   span: {
     [theme.breakpoints.only("xs")]: {

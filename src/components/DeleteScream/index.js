@@ -10,6 +10,9 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 //Icon
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
+//custome
+import styles from "./styles";
+import { withStyles } from "@material-ui/styles";
 
 const DeleteScream = props => {
   const {
@@ -19,7 +22,8 @@ const DeleteScream = props => {
     user: {
       authenticated,
       credentials: { handle }
-    }
+    },
+    classes
   } = props;
 
   const [open, setOpen] = useState(false);
@@ -40,7 +44,11 @@ const DeleteScream = props => {
   return (
     <>
       {authenticated && userHandle === handle && (
-        <MyButton title="Delete Scream" onClick={handleClickOpen}>
+        <MyButton
+          className={classes.button}
+          title="Delete Scream"
+          onClick={handleClickOpen}
+        >
           <DeleteOutline color="secondary" />
         </MyButton>
       )}
@@ -70,4 +78,7 @@ const mapStateToProp = state => ({
 
 const mapDispatchToProp = { deleteScream };
 
-export default connect(mapStateToProp, mapDispatchToProp)(DeleteScream);
+export default connect(
+  mapStateToProp,
+  mapDispatchToProp
+)(withStyles(styles)(DeleteScream));

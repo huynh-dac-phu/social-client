@@ -16,7 +16,7 @@ import icon from "../../images/icon.png";
 import { connect } from "react-redux";
 import { loginUser } from "../../redux/actions/userAction";
 
-const useStyles = makeStyles(theme => ({ ...theme.spreadThis }));
+const useStyles = makeStyles(theme => ({ ...theme.spreadThis, ...styles }));
 
 const complexStateInitial = {
   email: "",
@@ -51,56 +51,56 @@ const Login = props => {
   return (
     <Grid className={classes.form} container>
       <Grid item sm></Grid>
-      <Grid item sm>
+      <Grid item md className={classes.content}>
         <img className={classes.icon} src={icon} alt="app icon" />
         <Typography className={classes.pageTitle} variant="h3">
           Login
-          <form noValidate onSubmit={handleSubmit}>
-            <TextField
-              className={classes.textInput}
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              helperText={error.email}
-              error={error.email ? true : false}
-              fullWidth
-              value={statesManager.email}
-              onChange={handleChange}
-            ></TextField>
-            <TextField
-              className={classes.textInput}
-              id="password"
-              name="password"
-              type="password"
-              label="Password"
-              helperText={error.password}
-              error={error.password ? true : false}
-              fullWidth
-              value={statesManager.password}
-              onChange={handleChange}
-            ></TextField>
-            {error.general && (
-              <Typography className={classes.customError} variant="body2">
-                {error.general}
-              </Typography>
-            )}
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              fullWidth
-              className={classes.button}
-              disabled={loading}
-            >
-              Submit
-            </Button>
-            {loading && <LinearProgress color="secondary" />}
-            <small className={classes.signUp}>
-              Don't have an account ? Sign up <Link to="/signup">here</Link>{" "}
-            </small>
-          </form>
         </Typography>
+        <form noValidate onSubmit={handleSubmit}>
+          <TextField
+            className={classes.textInput}
+            id="email"
+            name="email"
+            type="email"
+            label="Email"
+            helperText={error.email}
+            error={error.email ? true : false}
+            fullWidth
+            value={statesManager.email}
+            onChange={handleChange}
+          ></TextField>
+          <TextField
+            className={classes.textInput}
+            id="password"
+            name="password"
+            type="password"
+            label="Password"
+            helperText={error.password}
+            error={error.password ? true : false}
+            fullWidth
+            value={statesManager.password}
+            onChange={handleChange}
+          ></TextField>
+          {error.general && (
+            <Typography className={classes.customError} variant="body2">
+              {error.general}
+            </Typography>
+          )}
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            fullWidth
+            className={classes.button}
+            disabled={loading}
+          >
+            Submit
+          </Button>
+          {loading && <LinearProgress color="secondary" />}
+          <small className={classes.signUp}>
+            Don't have an account ? Sign up <Link to="/signup">here</Link>{" "}
+          </small>
+        </form>
       </Grid>
       <Grid item sm></Grid>
     </Grid>
